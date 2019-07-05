@@ -1,0 +1,144 @@
+--------------------------------------------------------
+GET /channels[?page,size]
+Responses: 200
+	Liefert eine Liste von Channels zurück. Bei Mehr als 20 existierenden Channels kann optional über den Query-Parameter (page=N) zur Seite N „geblättert“ werden. Alternativ kann die Seitengröße mit dem Parameter size=N erhöht werden. Die Anzahl der Seiten und die aktuelle Seitennummer kann dem page-Abschnitt des zurückgegebenen JSON-Bodys entnommen werden. Relative Pfadangaben zum Vorwärts-, bzw. Rückwärtsblättern sind außerdem im „_links“-Abschnitt vorhanden, wenn mehrere Seiten existieren.
+Beispiel:
+GET /channels
+Response Body (200): {
+    "_embedded": {
+        "channelList": [
+            {
+                "id": 1,
+                "name": "Tutoren",
+                "topic": "TutorsOnly"
+            },
+            {
+                "id": 2,
+                "name": "<script>alert('You got hacked!')</script>",
+                "topic": "TutorsOnly"
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "/channels"
+        }
+    },
+    "page": {
+        "size": 20,
+        "totalElements": 13,
+        "totalPages": 1,
+        "number": 0
+    }
+}
+
+--------------------------------------------------------
+POST /channels
+Responses: 201 (Header: Location), 409
+	Erstellt eine neue Channel-Ressource, mit im Request-Body gegebenen Namen und Themenbeschreibung. Als Response erhält man einen Header mit dem relativen Pfad zur neu angelegten Ressource, bzw., falls ein Channel mit gleichem Namen existiert, einen Konflikt-Fehlerstatus zurück.
+Beispiel:
+POST /channels
+Request-Body: {
+„name“: „TestChannel“,
+„topic“: „All things testing“
+}
+
+--------------------------------------------------------
+GET /channels/{id}
+Responses: 200, 404
+	Liefert Informationen über den Channel mit gegebener ID zurück.
+Beispiel:
+GET /channels/1
+Response Body (200): {
+"id": 1,
+"name": "testChannel",
+"topic": "All things testing"
+}
+
+--------------------------------------------------------
+GET /channels/{id}/messages[?lastSeenTimestamp,page]
+Responses: 200, 404
+	Liefert Nachrichten aus dem über die ID gegebenen Channel zurück. Optional können zwei Parameter mitgegeben werden: lastSeenTimestamp und page. Bei weglassen der Parameter liefert der Server die jüngsten 10 Nachrichten des Channels. Bei Angabe von lastSeenTimestamp werden alle Nachrichten die neuer oder gleich alt als dieser übergebene Zeitstempel sind zurückgegeben. Achtung: Der Zeitstempel als Query-Parameter muss URL-encoded sein. Der Page-Parameter ermöglicht das Blättern, sofern mehr als 50 Nachrichten zurückgegeben werden. Die Seitengrößen sind hier statisch vom Server festgelegt.
+Beispiel:
+GET /channels/1/messages?lastSeenTimestamp=2019-04-12T09%3A30%3A49.560247Z&page=0
+Response Body (200): {
+ "_embedded": {
+ "messageList": [
+ {
+ "id": 1,
+ "timestamp": "2019-04-12T09:30:49.560247Z",
+ "content": "Hallo Channel!",
+ "creator": "user1",
+ "channel": {
+ "@id": 1,
+ "id": 1,
+ "name": "TestChannel",
+ "topic": "All things testing"
+ }
+ }
+ ]
+ },
+ "_links": {
+ "self": {
+ "href": "/channels/1"
+ }
+ },
+ "page": {
+ "size": 50,
+ "totalElements": 1,
+ "totalPages": 1,
+ "number": 0
+ }
+}
+
+--------------------------------------------------------
+POST /channels/{id}/messages[?lastSeenTimestamp,page]
+Responses: 200, 404
+	Erstellt serverseitig eine neue Message-Ressource mit gegebenem Inhalt und Ersteller. Die erstellte Message ist dem Channel mit der ID aus dem Pfad zugeordnet. Auch hier kann der lastSeenTimestamp Query-Parameter genutzt werden. Er bewirkt, dass, zusätzlich zur neu erstellten Message gemäß des Requests, alle weiteren neu erstellten Messages von anderen Clients ebenfalls vom Server in der Response geliefert werden.
+Beispiel:
+POST /channels/1/messages?lastSeenTimestamp=2019-04-12T09%3A30%3A49.560247Z
+Request-Body: {
+„creator“: „user1“,
+„content“: „Hallo Channel!“
+}
+Response Body (202): {
+ "_embedded": {
+ "messageList": [
+ {
+ "id": 14,
+ "timestamp": "2019-05-17T14:25:58.763698Z",
+ "content": "Hallo Channel!",
+ "creator": "user1",
+ "channel": {
+ "@id": 1,
+ "id": 2,
+ "name": "testChannel",
+ "topic": "all things testing"
+ }
+ }
+ ]
+ },
+ "_links": {
+ "self": {
+ "href": "/channels/1"
+ }
+ },
+ "page": {
+ "size": 100,
+ "totalElements": 1,
+ "totalPages": 1,
+ "number": 0
+ }
+}
+
+
+--------------------------------------------------------
+GET /channels/{id}/users
+Responses: 200
+	Liefert eine Liste aller im Channel mit {id} aktiven Nutzernamen zurück. Ein aktiver Nutzer ist einer, der innerhalb der letzten 10 Minuten eine Nachricht an den Channel gesendet hat.
+Beispiel:
+GET /channels/1/users
+Response Body (200): [
+ "user2",
+"user1"
+]

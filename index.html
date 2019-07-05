@@ -1,0 +1,83 @@
+<html>
+<head>
+	<meta charset="UTF-8" >
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta name="keywords" content="Anwesys, Project">
+	<meta name="description" content="Building a Website">
+	<meta name="author" content="Erdem, Sandra, Danial, Florian">
+
+	<title>WhatsChat</title>
+
+	<!-- Style Sheets https://www.w3schools.com/tags/att_link_media.asp*/ -->
+	<link rel="stylesheet" type="text/css"
+	media="screen"
+	href ="css/global_style.css">
+	<!-- / Style Sheets-->
+</head>
+<body>
+<div id="content-wrap">
+	<!-- WRAPPER AROUND ALL PAGE CONTENT-->
+	<div id="left-side-content" style="display: initial;"> <!-- Nav menu on the left-->
+		<div id="account-w"> <!-- User Info (Name, etc.) and change ability-->
+			Name: <span id="a-name">user</span>
+			<form onsubmit="this.reset(); return false">
+				<input id="nname" type="text">
+		  		<input type="submit" onclick="setUserName(nname.value)" value="Set Name">
+		  	</form>
+		</div>
+		<div id="CL-w"> <!-- List of all available Channels-->
+			<input type="button" onclick="reset()" value="Home"/>
+			<div id="CL-size"> <!-- Slider to change # of channels per page-->
+				<input type="range" min="0" max="100" value="20" step="5" class="slider" id="CL-S-slider" onchange="setCLSize(this.value)" oninput="setSizeIndicator(this.value)">
+				<span id="CL-S-value">20</span>
+			</div>
+			<div id="CL"> <!-- List of available channels--> </div>
+			<div id="CL-PL"> <!-- List of pages for the channel list--> </div>
+		</div>
+		<div id="c-create-w"> <!-- Create a new Channel-->
+			<button id="toggle-button" onclick="openForm()">Create New Channel</button>
+			<div id="toggle-w" style="display: none;">
+				<form id="form-w" onsubmit="return false">
+					<label for="c-new-n"><b>Channel Name</b></label>
+					<input type="text" id="cNewN" placeholder="Enter Channel Name"required>
+
+					<label for="c-new-t"><b>Topic Name</b></label>
+					<input type="text" id="cNewT" placeholder="Enter Topic Name">
+
+					<button type="submit" id="c-submit" onclick="createChannelA(cNewN.value, cNewT.value)">Create</button>
+					<button type="button" id="c-cancel" onclick="closeForm()">Cancel</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="right-side-content"> <!-- Content box on the right-->
+		<div id="c-info-header"> <!-- Info about active channel-->
+			<span id="ci-id"></span>
+			<span id="ci-name"></span>
+			<span id="ci-topic"></span>
+		</div>
+		<div id="c-member-list"> <!-- Info about joined members-->
+		</div>
+		<div id="channel-w" style="display: initial;"> <!-- Joined / Active Channel-->
+			<div id="m-list-w"> <!-- Latest Messages of joined channel-->
+			</div>
+			<div id="m-form-w"> <!-- Form for Sending new Messages to active channel-->
+				<form id="Mform" onsubmit="this.reset(); return false">
+					<input  placeholder="Please enter text here" title="Please enter text here" id="mNewMsg" name="Message" type="text" size="40" maxlength="255"/>
+					<button type="submit" id="b-msg" onclick="sendMessageA(mNewMsg.value, activeChannel)">Send</button>
+				</form>
+			</div>
+		</div>
+	</div>
+<!--CONTENT-WRAP END-->
+</div>
+<!-- Java Script-->
+<script
+	src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/script.js" async></script>
+<!-- / Java Script-->
+</body>
+</html>

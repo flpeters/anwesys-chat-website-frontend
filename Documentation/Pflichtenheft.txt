@@ -1,0 +1,39 @@
+Channels erstellen: Nutzer sollen Channels mit entsprechendem Namen erstellen können.
+Channels sind Chatgruppen. Jeder Channel hat ein Thema („topic“), das den Channel neben
+dem Namen charakterisiert. Serverseitig entspricht dies dem Anlegen einer neuen ChannelRessource.
+
+Channels darstellen: Die bestehenden Channels sollen in einer Liste im Frontend angezeigt
+werden. Über eine Liste kann ein Nutzer einen Channel auswählen, in dem er Nachrichten
+schreiben und lesen möchte. Die Liste der Channels soll in regelmäßigen Abständen
+aktualisiert werden (alle 10 Sekunden).
+
+Channels bei- und austreten: Nutzer sollen einem Channel bei- und austreten können. Nur
+beigetretene Nutzer können Nachrichten des Channels lesen und Nachrichten an den Channel
+schreiben. Bevor ein Nutzer einem Channel beitritt, muss er einen Nutzernamen für den 
+jeweiligen Channel festlegen. Der Nutzer soll immer genau einem Channel beitreten können.
+Während der Nutzer einem Channel beigetreten ist sollen der Name und das Thema für diesen
+Channel angezeigt werden. Es soll außerdem in einer Liste angezeigt werden, welche anderen
+Nutzer sich zurzeit in diesem Channel befinden. Außerdem sollen die Channel-Nachrichten
+angezeigt werden (s. nächste Funktionalität).
+
+Channel-Nachrichten anzeigen: Beim Betreten eines Channels sollen die jüngsten 10
+Nachrichten dieses Channels im Nachrichtenfenster angezeigt werden. Die Logik dafür ist
+Server-seitig implementiert (siehe API Dokumentation).
+Sobald der Nutzer den Channel betreten hat, soll der Nachrichtenverlauf regelmäßig (maximal
+sekündlich) mit dem Backend aktualisiert werden, d.h. der aktuell angezeigte Verlauf soll um
+die jüngsten Nachrichten in zeitlich korrekter Abfolge ergänzt werden. Dazu kann an die
+Anfrage der Zeitstempel der letzten im Verlauf sichtbaren Nachricht als Query-Parameter
+beigefügt werden (siehe auch API-Dokumentation).
+Für jede Nachricht im Chatfenster sollen der Zeitpunkt der Veröffentlichung, der Autor und
+natürlich der Nachrichteninhalt angezeigt werden. Es darf keine Nachricht doppelt dargestellt
+sein.
+
+Channel-Nachrichten schicken: Der Nutzer soll Nachrichten verfassen und diese in dem
+beigetretenen Channel veröffentlichen können. Eine Nachricht besteht aus Nachrichtentext
+(„content“), Autor („creator“) und einem Zeitstempel und ist einem Channel zugeordnet.
+Autor und Channel sind dabei vorbestimmt durch den Channel, dem der Nutzer im Moment
+mit einem Nutzernamen beigetreten ist. Der Zeitstempel einer Nachricht wird Serverseitig
+festgelegt, sobald die Nachricht an den Server gesendet wurde. Beachten Sie auch hierzu die
+Beispiele in der API Dokumentation.
+Erfolgreich an den Server gesendete Nachrichten sollen direkt nach dem Senden an die bereits
+vorliegenden Nachrichten im Nachrichtenfenster angehängt werden.

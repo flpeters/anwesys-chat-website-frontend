@@ -1,0 +1,312 @@
+* {
+	position: relative;
+	margin: 0px;
+	box-sizing: border-box;
+	font-family: "Open Sans", "Roboto", sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+body {
+	/*overflow: hidden;*/
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
+	min-width: 100%;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+
+/*WRAPPER AROUND ALL CONTENT INSIDE BODY*/
+#content-wrap {
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 200px 1fr;
+	grid-template-areas: "left right";
+}
+
+#left-side-content {
+	width: 100%;
+	height: 100%;
+	grid-area: left;
+}
+
+#account-w {
+	width: 100%;
+	height: 10%;
+	font-weight: bold;
+	font-size: 1.2em;
+	background-color: #d9d9d9;
+	border-right: 2px solid black;
+	overflow-wrap: break-word;
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+/*account-w end*/
+
+
+#CL-w {
+	width: 100%;
+	height: 70%;
+	border: 2px solid black;
+}
+
+#CL-w > input {
+	width: 100%;
+	height: 5%;
+}
+
+#CL-size {
+	width: 100%;
+	height: 5%;
+	border-bottom: 	2px solid black;
+	background-color: #d9d9d9;
+}
+
+#CL {
+	position: absolute;
+	width: 100%;
+	height: 75%;
+	top: auto;	
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+#CL-PL {
+	position: absolute;
+	width: 100%;
+	height: 15%;
+	bottom: 0px;
+	border-top: 2px solid black;
+	background-color: #d9d9d9;
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.c-list-elem > * {
+	overflow-wrap: break-word;
+}
+/*CL-w end*/
+
+
+#c-create-w {
+	width: 100%;
+	height: 20%;
+}
+/*LEFT SIDE CONTENT END*/
+
+
+#right-side-content {
+	width: 100%;
+	height: 100%;
+	grid-area: right;
+	display: grid;
+	grid-template-columns: 1fr 200px;
+	grid-template-rows: 30px 1fr;
+	grid-template-areas:
+	"info info"
+	"main users";
+}
+
+#c-info-header {
+	grid-area: info;
+	background-color: #d9d9d9;
+	border-bottom: 2px solid black;
+	border-right: 2px solid black;
+}
+
+#c-member-list {
+	grid-area: users;
+	border-left:  2px solid black;
+	border-right:  2px solid black;
+	background-color: #d9d9d9;
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+#channel-w {
+	width: 100%;
+	height: 100%;
+	grid-area: main;
+	background-color: #d9d9d9;
+} 
+
+#m-list-w {
+	position: absolute;
+	border-bottom:  2px solid black;
+	width: 100%;
+	height: 90%;
+	top:0px;
+	padding: 1em;
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+#m-list-elem > * {
+	overflow-wrap: break-word;
+}
+
+#m-form-w {
+	position: absolute;
+	display: block;
+	bottom: 0px;
+	left: 50%;
+	transform: translate(-50%);
+}
+/*RIGHT SIDE CONTENT END*/
+
+
+/*CREATE CHANNEL CSS*/
+#toggle-button {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #8c8c8c;
+	border-right: 2px solid black;
+	border-left: 2px solid black;
+	border-top: 1px solid black;
+}
+
+#toggle-button:hover {
+	font-weight: bold;
+}
+
+#toggle-w {
+	width: 100%;
+	height: 100%;
+	border: 2px solid black;
+	background-color: #d9d9d9;
+	z-index: 2;
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+#toggle-w:hover {
+font-weight: bold;
+}
+
+#form-w {
+	width: 100%;
+	padding: 10px;
+	background-color: #d9d9d9;
+}
+
+#form-w > input {
+	width: 100%;
+	padding: 5px;
+	margin: 5px 0 5px 0;
+	background: #f1f1f1;
+	border: 2px solid black;
+}
+
+#c-submit {
+	background-color: #4CAF50;
+	padding: 3% 6%;
+	float: left;
+}
+
+#c-submit:hover {
+	font-weight: bold;
+	background-color: green;
+}
+
+#c-cancel {
+	background-color: #ff4d4d;
+	padding: 3% 6%;
+	float: right;
+}
+
+#c-cancel:hover {
+	font-weight: bold;
+	background-color: #ff0000;
+}
+/*CREATE CHANNEL CSS END*/
+
+
+/*CHANNEL LIST*/
+#CL {
+	background-color: #d9d9d9;
+}
+
+.c-join {
+	margin-bottom: 1em;
+	background-color: #4CAF50;
+	color: white;
+	padding: 3% 6%;
+	outline:none;
+	margin: 0.2em;
+}
+
+.c-join:hover {
+	font-weight: bold;
+	background-color: green;
+}
+
+.c-list-elem {
+	border-style: ridge;
+	border-color: #bfbfbf;
+}
+
+.c-id, .c-name, .c-topic {
+	padding: 0.2em;
+}
+/*CHANNEL LIST END */
+
+
+/*CHANNEL INFO*/
+#ci-id, #ci-name, #ci-topic {
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 0.5em;
+}
+/*CHANNEL INFO END*/
+
+
+/*MESSAGES */
+.m-timestamp {
+	padding-bottom: 1em;
+}
+
+.m-list-elem {
+    background: #b3ffb3;
+    border-radius: 1.0em;
+    margin: 1em;
+    padding: 0.5em;
+    border-style: solid;
+    overflow-wrap: break-word;
+}
+/*MESSAGES END*/
+
+
+/*USER LIST*/
+.member {
+	margin-top: 1.5em;
+	margin-left: 1.0em;
+	overflow-wrap: break-word;
+}
+/*USER LIST END*/
+
+
+/*SEND MESSAGE*/
+#mNewMsg {
+    height:50px;
+    width: 30em;
+    font-size:14pt;
+    margin-bottom: 1.5em; 
+}
+
+#b-msg {
+	width: 8em;
+    height: 50px;
+}
+/*SEND MESSAGE END*/
+
