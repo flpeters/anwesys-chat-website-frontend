@@ -3,6 +3,6 @@ The specification was given to us by our professor. Our job was to first create 
 
 For part one we had 4.5 weeks to complete our work and for part 2 we had 2.5 weeks.
 
-For this website to work, a server has to be online. Once we finish our work, a java implementation of the server will be available in another repository. At the very top of /js/script.js one can change the ip adress of the backend server.
+For this website to work, a server has to be online. A java server is available at https://github.com/flpeters/anwesys-chat-website-backend. At the very top of /js/script.js one can change the ip adress of the backend server.
 
 To use this website, simply open index.html in a web browser and make sure that the backend is reachable.
