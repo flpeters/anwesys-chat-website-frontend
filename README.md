@@ -1,8 +1,13 @@
-This is the frontend of a web application delevoped as part of a course at TU-Berlin.
-The specification was given to us by our professor. Our job was to first create the frontend, with the backend provided by the TU. And then create the backend aswell, using our frontend to test that everything is working as intended.
+# Chat Website Frontend
+> Delevoped as part of a course at TU-Berlin  
+> The specification was given to us by our professor.  
 
-For part one we had 4.5 weeks to complete our work and for part 2 we had 2.5 weeks.
+Our job was to first create the __frontend__, with the [backend](https://github.com/flpeters/anwesys-chat-website-backend) provided by the TU. And then create the backend as well, using our frontend to test that everything is working as intended.  
+For frontend we had 4.5 weeks to complete our work and for the backend we had 2.5 weeks.
 
-For this website to work, a server has to be online. A java server is available at https://github.com/flpeters/anwesys-chat-website-backend. At the very top of /js/script.js one can change the ip adress of the backend server.
+# How to use
+For this Project to work, both the __frontend__ and the [backend](https://github.com/flpeters/anwesys-chat-website-backend) are needed.  
+At the very top of /js/script.js in the frontend, one can change the ip adress of the backend server.
 
-To use this website, simply open index.html in a web browser and make sure that the backend is reachable.
+- To use this website, simply open index.html in a web browser and make sure that the backend is reachable.
+- A java server is available at: https://github.com/flpeters/anwesys-chat-website-backend
